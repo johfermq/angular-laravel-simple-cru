@@ -1,0 +1,151 @@
+<div class="card shadow">
+  <div class="card-header bg-secondary text-white">
+    <h2 class="h4">
+      Formulario <small class="text-white-50">registro, edición</small>
+    </h2>
+  </div>
+  <div class="card-body">
+
+    <app-alert-message [message]="message" [autoClose]="true"></app-alert-message>
+
+    <form [formGroup]="userForm" (ngSubmit)="save()" autocomplete="off">
+      <div class="form-group">
+        <label for="cedula">No. Cédula</label>
+        <input
+          type="text" class="form-control form-control-sm" id="cedula" formControlName="cedula"
+          [ngClass]="{ 'is-invalid': existsErrors(cedula) || errors.exists('cedula') }">
+        <ng-container *ngIf="existsErrors(cedula)">
+          <span class="invalid-feedback" role="alert" *ngIf="cedula.errors.required">
+              <strong>El campo cédula es requerido.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="cedula.errors.minlength">
+              <strong>El campo cédula debe contener al menos 7 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="cedula.errors.maxlength">
+              <strong>El campo cédula no debe ser mayor que 10 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="cedula.errors.pattern">
+              <strong>El formato del campo cédula es inválido.</strong>
+          </span>
+        </ng-container>
+        <span class="invalid-feedback" role="alert" *ngIf="errors.exists('cedula')">
+            <strong>{{ errors.get('cedula') }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="nombres">Nombres</label>
+        <input
+          type="text" class="form-control form-control-sm" id="nombres" formControlName="nombres"
+          [ngClass]="{ 'is-invalid': existsErrors(nombres) || errors.exists('nombres') }">
+        <ng-container *ngIf="existsErrors(nombres)">
+          <span class="invalid-feedback" role="alert" *ngIf="nombres.errors.required">
+              <strong>El campo nombres es requerido.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="nombres.errors.minlength">
+              <strong>El campo nombres debe contener al menos 3 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="nombres.errors.maxlength">
+              <strong>El campo nombres no debe ser mayor que 50 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="nombres.errors.pattern">
+              <strong>El formato del campo nombres es inválido.</strong>
+          </span>
+        </ng-container>
+        <span class="invalid-feedback" role="alert" *ngIf="errors.exists('nombres')">
+            <strong>{{ errors.get('nombres') }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input
+          type="text" class="form-control form-control-sm" id="apellidos" formControlName="apellidos"
+          [ngClass]="{ 'is-invalid': existsErrors(apellidos) || errors.exists('apellidos') }">
+        <ng-container *ngIf="existsErrors(apellidos)">
+          <span class="invalid-feedback" role="alert" *ngIf="apellidos.errors.required">
+              <strong>El campo apellidos es requerido.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="apellidos.errors.minlength">
+              <strong>El campo apellidos debe contener al menos 3 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="apellidos.errors.maxlength">
+              <strong>El campo apellidos no debe ser mayor que 50 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="apellidos.errors.pattern">
+              <strong>El formato del campo apellidos es inválido.</strong>
+          </span>
+        </ng-container>
+        <span class="invalid-feedback" role="alert" *ngIf="errors.exists('apellidos')">
+            <strong>{{ errors.get('apellidos') }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input
+          type="email" class="form-control form-control-sm" id="correo" formControlName="correo"
+          [ngClass]="{ 'is-invalid': existsErrors(correo) || errors.exists('correo') }">
+        <ng-container *ngIf="existsErrors(correo)">
+          <span class="invalid-feedback" role="alert" *ngIf="correo.errors.required">
+              <strong>El campo correo es requerido.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="correo.errors.email">
+              <strong>El campo correo no es un correo válido.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="correo.errors.maxlength">
+              <strong>El campo correo no debe ser mayor que 50 caracteres.</strong>
+          </span>
+        </ng-container>
+        <span class="invalid-feedback" role="alert" *ngIf="errors.exists('correo')">
+            <strong>{{ errors.get('correo') }}</strong>
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          type="text" class="form-control form-control-sm" id="telefono" formControlName="telefono"
+          [ngClass]="{ 'is-invalid': existsErrors(telefono) || errors.exists('telefono') }">
+        <ng-container *ngIf="existsErrors(telefono)">
+          <span class="invalid-feedback" role="alert" *ngIf="telefono.errors.required">
+              <strong>El campo teléfono es requerido.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="telefono.errors.minlength">
+              <strong>El campo teléfono debe contener al menos 7 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="telefono.errors.maxlength">
+              <strong>El campo teléfono no debe ser mayor que 10 caracteres.</strong>
+          </span>
+          <span class="invalid-feedback" role="alert" *ngIf="telefono.errors.pattern">
+              <strong>El formato del campo teléfono es inválido.</strong>
+          </span>
+        </ng-container>
+        <span class="invalid-feedback" role="alert" *ngIf="errors.exists('telefono')">
+            <strong>{{ errors.get('telefono') }}</strong>
+        </span>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button
+          type="button" class="btn btn-outline-secondary"
+          (click)="reset()"
+          [disabled]="loading"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit" class="btn btn-outline-primary ml-2"
+          [disabled]="!userForm.valid"
+          [ngClass]="{ 'd-none': loading }"
+        >
+          Guardar
+        </button>
+        <button
+          type="button" class="btn btn-outline-primary ml-2"
+          [ngClass]="{ 'd-none': !loading }" disabled
+        >
+          <span class="spinner-border spinner-border-sm"
+            role="status" aria-hidden="true"></span>
+          Guardando...
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

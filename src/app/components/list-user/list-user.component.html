@@ -1,0 +1,55 @@
+<div class="card shadow">
+  <div class="card-header bg-secondary text-white">
+    <h1 class="h4">
+      Usuarios <small class="text-white-50">listado actual</small>
+    </h1>
+  </div>
+  <div class="card-body" [ngClass]="{ 'd-none': !message && !loading }">
+    <app-alert-message [message]="message" *ngIf="message"></app-alert-message>
+
+    <div class="spinner-height d-flex align-items-center justify-content-center" *ngIf="loading && !message">
+      <div class="spinner-border text-primary spinner-size" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive" *ngIf="!loading">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cédula</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; index as i;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.cedula }}</td>
+          <td>{{ user.nombres }}</td>
+          <td>{{ user.apellidos }}</td>
+          <td>{{ user.correo }}</td>
+          <td>{{ user.telefono }}</td>
+          <td>
+            <button type="button" class="btn btn-outline-primary" (click)="edit(user)">
+              Editar
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="users.length === 0 && !loading">
+          <td colspan="7">
+            <div class="alert alert-info" role="alert">
+              ¡No hay usuarios registrados!
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

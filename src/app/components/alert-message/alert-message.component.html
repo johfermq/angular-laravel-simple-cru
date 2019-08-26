@@ -1,0 +1,9 @@
+<div class="alert fade show" *ngIf="newMessage"
+  [ngClass]="{
+    'alert-success': newMessage.type === messageType.success,
+    'alert-danger': newMessage.type === messageType.error,
+    'd-none': displayNone
+  }" role="alert"
+>
+  {{ newMessage.body }}
+</div>
